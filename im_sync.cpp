@@ -32,19 +32,19 @@ int main(int argc, char** argv) {
 	
 	//erzeuge neuen Ordner mit Datum als Name im Ordner records
 	time_t t = time(0);
-    struct tm* now = localtime( &t );
-    char buf[80];
-    strftime(buf, sizeof(buf), "%d-%m-%Y_%X", now);
-    data_path = "./records/" + string(buf) + "/";
-    string cmd = "mkdir -p " + data_path;
-    system( cmd.c_str() );
+	struct tm* now = localtime( &t );
+	char buf[80];
+	strftime(buf, sizeof(buf), "%d-%m-%Y_%X", now);
+	data_path = "./records/" + string(buf) + "/";
+	string cmd = "mkdir -p " + data_path;
+	system( cmd.c_str() );
+	
+	//erstelle timestamp file
+	string timestamp_path = data_path + "timestamp.txt";
+	timestamp_file.open(timestamp_path.c_str(), ios::out);
     
-    //erstelle timestamp file
-    string timestamp_path = data_path + "timestamp.txt";
-    timestamp_file.open(timestamp_path.c_str(), ios::out);
     
-    
-    //starte node
+	//starte node
 	ros::init(argc, argv, "im_sync");
 	ros::NodeHandle nh;
 	image_transport::ImageTransport it(nh);
