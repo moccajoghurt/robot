@@ -26,7 +26,6 @@ fstream timestamp_file;
 
 void save_img(const sensor_msgs::ImageConstPtr& msg);
 string get_zero_name(int im_count);
-void create_timestamp(string path);
 
 int main(int argc, char** argv) {
 	
